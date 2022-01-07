@@ -1,0 +1,41 @@
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{ contador }}</p>
+    <button v-on:click="somar">Somar 1</button>
+    <button v-on:click="contador2++">Somar 2</button>
+    <button v-on:click="diminuir">Diminuir 1</button>
+    <p>Resultado {{ resultado }}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            contador2: 0,
+        },
+        watch: {
+            contador(novo, antigo){
+                setTimeout(() => {
+                    this.contador = 0
+                }, 2000)
+            }
+        },
+        computed: {
+            resultado() {
+                return this.contador >= 5 ?
+                    'Maior ou igual a 5' : 'Menor a 5'
+            }
+        },
+        methods: {
+            somar() {
+                this.contador++
+            },
+            diminuir() {
+                this.contador--
+            }
+        }
+    })
+
+</script>
